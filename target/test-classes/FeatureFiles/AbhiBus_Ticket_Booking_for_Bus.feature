@@ -18,15 +18,15 @@ Feature: AbhiBus Automation
     Then user will see the buss list and choose what you want
     And user will pick the seat
 
-  #@Train-Booking @FunctionalTest
-  #Scenario: Train Ticket Booking
-    #Given Open the AbhiBus train booking website
-    #And user enter the <from station> and <to station>
-    #And user select the date
-    #And click on the search button
-    #And select the train in the list
-    #| from Station | to Station |
-    #| Bangalore    | Chennai    |
+  @Train-Booking @FunctionalTest
+  Scenario: Train Ticket Booking
+    Given Open the AbhiBus train booking website
+    And user enter the <from station> and <to station>
+    And user select the date
+    And click on the search button
+    And select the train in the list
+    | from Station | to Station |
+    | Bangalore    | Chennai    |
      
       
       

@@ -1,14 +1,12 @@
 package StepDefination;
-import POM.busType;
-import POM.homePage;
-import POM.loginPage;
-import POM.resultsPage;
+import POM.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import static StepDefination.hooks.driver;
 
 public class stepDefination{
-	
+
+	String operators;
 	loginPage LoginPage = new loginPage();
 	homePage home = new homePage(driver);
 	resultsPage resultPage = new resultsPage(driver);
@@ -72,7 +70,7 @@ public class stepDefination{
 	public void open_the_abhi_bus_train_booking_website() throws Exception {
 	 
 	   Thread.sleep(2000);
-	   home.ClickOnTrainsTab();
+	   home.ClickOnOperator(operator.Train);
 	   
 	}
 
@@ -81,6 +79,7 @@ public class stepDefination{
 	    Thread.sleep(2000);
 		home.fromTrainStation();
 	    home.ToTrainStation();
+
 	}
 	
 

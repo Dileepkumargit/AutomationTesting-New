@@ -1,41 +1,64 @@
 
-@tag @Bus-Booking @FunctionalTest
-Scenario: Bus Ticket Booking                                                    [90m# src/test/java/FeatureFiles/AbhiBus_Ticket_Booking_for_Bus.feature:12[0m
-  [32mGiven [0m[32mI want to open the AbhiBus Website[0m                                      [90m# StepDefination.stepDefination.i_want_to_open_the_abhi_bus_website()[0m
-  [32mAnd [0m[32muser login the abhibus website with [0m[32m[1m"username"[0m[32m and [0m[32m[1m"password"[0m[32m credentials[0m [90m# StepDefination.stepDefination.user_login_the_abhibus_website_with_and_credentials(java.lang.String,java.lang.String)[0m
-  [32mWhen [0m[32muser enter the from city and distination city[0m                            [90m# StepDefination.stepDefination.user_enter_the_from_city_and_distination_city()[0m
-  [32mAnd [0m[32muser enter the date of journey[0m                                            [90m# StepDefination.stepDefination.user_enter_the_date__of_journey()[0m
-  [32mAnd [0m[32muser click on the search button[0m                                           [90m# StepDefination.stepDefination.user_click_on_the_search_button()[0m
-  [32mThen [0m[32muser will see the buss list and choose what you want[0m                     [90m# StepDefination.stepDefination.user_will_see_the_buss_list_and_choose_what_you_want()[0m
-  [31mAnd [0m[31muser will pick the seat[0m                                                   [90m# StepDefination.stepDefination.user_will_pick_the_seat()[0m
-      [31morg.openqa.selenium.JavascriptException: javascript error: {"status":32,"value":"Unable to locate an element with the xpath expression //div[@id='place-container']//div[@class='label']///parent::div because of the following error:\nSyntaxError: Failed to execute 'evaluate' on 'Document': The string '//div[@id='place-container']//div[@class='label']///parent::div' is not a valid XPath expression."}
-  (Session info: chrome=124.0.6367.209)
-Build info: version: '4.19.1', revision: 'abe0ee07dc'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [b870c6136602e84d9b59e5c389b23a95, findElements {value=//div[@id='place-container']//div[@class='label']///parent::div, using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 124.0.6367.209, chrome: {chromedriverVersion: 124.0.6367.207 (a9001a6e39f..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64983}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64983/devtoo..., se:cdpVersion: 124.0.6367.209, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: b870c6136602e84d9b59e5c389b23a95
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
-	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
-	at POM.resultsPage.selectdroppoint(resultsPage.java:51)
-	at StepDefination.stepDefination.user_will_pick_the_seat(stepDefination.java:61)
-	at ✽.user will pick the seat(file:///C:/Users/dithoopa/eclipse-workspace/Cucumber_Automation/src/test/java/FeatureFiles/AbhiBus_Ticket_Booking_for_Bus.feature:19)
+@tag @Train-Booking @FunctionalTest
+Scenario: Train Ticket Booking                       [90m# src/test/java/FeatureFiles/AbhiBus_Ticket_Booking_for_Bus.feature:22[0m
+  [32mGiven [0m[32mOpen the AbhiBus train booking website[0m       [90m# StepDefination.stepDefination.open_the_abhi_bus_train_booking_website()[0m
+  [32mAnd [0m[32muser enter the <from station> and <to station>[0m [90m# StepDefination.stepDefination.user_enter_the_from_station_and_to_station()[0m
+  [32mAnd [0m[32muser select the date[0m                           [90m# StepDefination.stepDefination.user_select_the_date()[0m
+  [32mAnd [0m[32mclick on the search button[0m                     [90m# StepDefination.stepDefination.click_on_the_search_button()[0m
+  [31mAnd [0m[31mselect the train in the list[0m                   [90m# StepDefination.stepDefination.select_the_train_in_the_list()[0m
+    | from Station | to Station |
+    | Bangalore    | Chennai    |
+      [31mio.cucumber.core.exception.CucumberException: Step [select the train in the list] is defined with 0 parameters at 'StepDefination.stepDefination.select_the_train_in_the_list()'.
+However, the gherkin step has 1 arguments:
+ * Table:
+      | from Station | to Station |
+      | Bangalore    | Chennai    |
+
+Step text: select the train in the list
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.arityMismatch(PickleStepDefinitionMatch.java:83)
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:42)
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:81)
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:53)
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:84)
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:75)
+	at io.cucumber.junit.PickleRunners$NoStepDescriptions.lambda$run$0(PickleRunners.java:151)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:136)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:136)
+	at io.cucumber.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:148)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:144)
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:28)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at io.cucumber.junit.FeatureRunner.run(FeatureRunner.java:137)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:196)
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:89)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runFeatures$6(CucumberExecutionContext.java:147)
+	at io.cucumber.core.runtime.CucumberExecutionContext.execute(CucumberExecutionContext.java:162)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runFeatures(CucumberExecutionContext.java:145)
+	at io.cucumber.junit.Cucumber$StartAndFinishTestRun.evaluate(Cucumber.java:226)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
 [0m
 
-    Embedding screenshot [image/png 182395 bytes]
+    Embedding screenshot [image/png 37694 bytes]
 

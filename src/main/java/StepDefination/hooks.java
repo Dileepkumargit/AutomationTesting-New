@@ -1,7 +1,10 @@
 package StepDefination;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.velocity.texen.util.FileUtil;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -55,9 +58,8 @@ public class hooks {
 
 				 byte[] src = ts.getScreenshotAs(OutputType.BYTES);
 				 scenario.attach(src, "image/png", "screenshot"); // ... and embed it in the report.
-				
 			 }
-			 driver.quit();
+//			 driver.quit();
         }
 //	 public void embedScreenshot(Scenario scenario) {
 //	        if(scenario.isFailed()) {
