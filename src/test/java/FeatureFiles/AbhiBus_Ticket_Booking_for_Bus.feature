@@ -24,9 +24,7 @@ Feature: AbhiBus Automation
     And user enter the <from station> and <to station>
     And user select the date
     And click on the search button
-    And select the train in the list
-    | from Station | to Station |
-    | Bangalore    | Chennai    |
+    And User select the train in the list of train
      
       
       

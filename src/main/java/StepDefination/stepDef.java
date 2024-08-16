@@ -9,6 +9,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.ElementClickInterceptedException;
 
+import java.awt.*;
+
 import static StepDefination.hooks.driver;
 import static com.github.mkolisnyk.cucumber.assertions.LazyAssert.assertEquals;
 
@@ -29,14 +31,14 @@ public class stepDef {
 //    }
     @When("user select the Operator type")
     public void userSelectTheTypeOperator() throws InterruptedException {
-        Thread.sleep(3000);
+
        Home.ClickOnOperator(operator.valueOf("Bus"));
     }
-//    @Then("user enter the {} and {}")
-//    public void user_enter_the_{}_and_{}() throws InterruptedException {
-//        Thread.sleep(3000);
-//        Home.enterFromCity().enterToCity().pickJourneydate();
-//    }
+    @When("user select the {string} Operator type")
+    public void user_select_the_operator_type(String string) throws InterruptedException {
+
+        Home.ClickOnOperator(operator.valueOf(string));
+    }
     @Then("Click on the search")
     public void click_on_the_search() {
         Home.clickonSearch();
@@ -53,7 +55,13 @@ public class stepDef {
     }
     @Then("user enter the {string} and {string}")
     public void user_Enter_The_From_Station_And_To_Station(String value, String value1) throws InterruptedException {
-        Thread.sleep(3000);
+
         Home.enterFromCity().enterToCity().pickJourneydate();
+    }
+    @Then("user enter the from location {string} and to location {string}")
+    public void user_enter_the_from_location_and_to_location(String string, String string2) throws InterruptedException, AWTException {
+        System.out.println("Testing");
+
+        Home.enterThefromLocation().pickJourneydate();
     }
 }
