@@ -3,7 +3,6 @@ package POM;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +39,7 @@ public class resultsPage{
 		WebElement BusName = driver.findElement(By.xpath("//div[@class='container card service  md '][1]"));
 //		System.out.println("BusOperator :: "+BusName.getText());
 		List<WebElement> Showseats = driver.findElements(By.xpath("//div[@class='container card service  md ']//div//button"));
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		random(Showseats);
 		return this;
 
@@ -80,6 +79,7 @@ public class resultsPage{
 //		WebDriverWait wait = new WebDriverWait(driver, );
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("")));
 		driver.findElement(By.xpath("//div[@id='seat-filter-bus-type']//span[starts-with(text(),'"+value+"')]")).click();
+
 		return this;
 		
 	}

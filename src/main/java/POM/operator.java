@@ -2,7 +2,7 @@ package POM;
 
 public enum operator {
 	
-	Bus("bus"), Train("train"), Flight("flight");
+	Bus("bus"), Train("train"), Flight("flights");
 	
 	private String value;
 	

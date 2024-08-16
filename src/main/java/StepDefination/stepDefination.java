@@ -93,9 +93,11 @@ public class stepDefination{
 	    home.clickOnSearch();
 	}
 
-	@And("select the train in the list")
-	public void select_the_train_in_the_list() {
-	    
+	@And("User select the train in the list of train")
+	public void user_select_the_train_in_the_list_of_train() throws InterruptedException {
+		Thread.sleep(2000);
+		System.out.println("Select the train in the list");
+	    home.ChooseTrainFromList();
 	}
 
 }
