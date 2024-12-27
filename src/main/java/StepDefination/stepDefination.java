@@ -2,6 +2,9 @@ package StepDefination;
 import POM.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+
+import static POM.operator.Bus;
+import static POM.operator.Flight;
 import static StepDefination.hooks.driver;
 
 public class stepDefination{
@@ -21,32 +24,25 @@ public class stepDefination{
 	@And("user login the abhibus website with {string} and {string} credentials")
 	public void user_login_the_abhibus_website_with_and_credentials(String Bangalore, String chennai) throws InterruptedException {
 	   
-//		LoginPage.clickOnSignLinks();
-//		LoginPage.enterUsername();
+		LoginPage.clickOnSignLinks();
+		LoginPage.enterUsername();
 	}
 
-	@And("user enter the from city and distination city")
-	public void user_enter_the_from_city_and_distination_city() throws InterruptedException {
+	@And("user enter the from city and to city")
+	public void user_enter_the_from_city_and_to_city() throws InterruptedException {
 		 Thread.sleep(3000); 
 			home.enterFromCity()
-					.enterToCity()
-					.pickJourneydate()
-					.clickonSearch();
-			
-//		 HomePage.enterToCity();
-//		 Thread.sleep(5000);
-//		 HomePage.pickJourneydate();
+					.enterToCity();
 		 
 	}
 
 	@And("user enter the date of journey")
-	public void user_enter_the_date__of_journey() {
-	    
+	public void user_enter_the_date__of_journey() throws InterruptedException {
+	    home.pickJourneydate();
 	}
 
 	@And("user click on the search button")
 	public void user_click_on_the_search_button() {
-	    
 		home.clickonSearch();
 	}
 
@@ -98,6 +94,19 @@ public class stepDefination{
 		Thread.sleep(2000);
 		System.out.println("Select the train in the list");
 	    home.ChooseTrainFromList();
+	}
+
+	@Given("user click on the flight booking")
+	public void user_click_on_the_flight_booking() throws InterruptedException {
+		Thread.sleep(2000);
+		home.ClickOnOperator(Flight);
+	}
+	@Given("user click on the {string} booking")
+	public void user_click_on_the_booking(String string) throws InterruptedException {
+		String OperatorType = string;
+		Thread.sleep(2000);
+		home.ClickOnOperator(operator.valueOf(OperatorType));
+
 	}
 
 }

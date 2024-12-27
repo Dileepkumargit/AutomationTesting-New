@@ -62,6 +62,6 @@ public class stepDef {
     public void user_enter_the_from_location_and_to_location(String string, String string2) throws InterruptedException, AWTException {
         System.out.println("Testing");
 
-        Home.enterThefromLocation().pickJourneydate();
+        Home.enterThefromLocation().enterToLocation().pickJourneydate();
     }
 }
