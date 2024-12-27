@@ -2,17 +2,17 @@
 Feature: AbhiBus Automation
   I want to test the Abhibus web site
 
-  Background: User enter <from city> and <destination city>
+  Background: User enter <from city> and <To city>
     
-    | from city | destination city |
+    | from city | To city |
     | Bangalore | Chennai |
 
 
   @Bus-Booking @FunctionalTests
   Scenario: Bus Ticket Booking
     Given I want to open the AbhiBus Website
-    And user login the abhibus website with "username" and "password" credentials
-    When user enter the from city and distination city
+#    And user login the abhibus website with "username" and "password" credentials
+    When user enter the from city and to city
     And user enter the date of journey
     And user click on the search button
     Then user will see the buss list and choose what you want
@@ -26,13 +26,13 @@ Feature: AbhiBus Automation
     And click on the search button
     And User select the train in the list of train
      
-      
-      
-      
-   #flight-Booking
-   #Scenario: Train Ticket Booking
-   #Given Open the AbhiBus
-   #And user enter the from station and to station
-   #And user select the date
-   #And click on the search button 
-   #And select the flight in the list
+
+   @flight-Booking
+   Scenario: flight Ticket Booking
+#   Given Open the AbhiBus booking
+#      And user click on the flight booking
+     And user click on the "Flight" booking
+     And user enter the <from station> and <to station>
+     And user select the date
+     And click on the search button
+

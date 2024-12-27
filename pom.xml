@@ -125,8 +125,7 @@
                                 <projectName>Cucumber_Automation</projectName>
                                 <outputDirectory>${project.build.directory}/cucumber-JVM-report</outputDirectory>
                                 <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-                                <skippedFails>true</skippedFails>
-                                <enableFlashChrats>true</enableFlashChrats>
+
                             </configuration>
                         </execution>
                     </executions>

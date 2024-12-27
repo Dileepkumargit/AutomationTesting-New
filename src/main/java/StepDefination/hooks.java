@@ -54,7 +54,7 @@ public class hooks {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				
 	}
-	 @After
+//	 @After
      public void close(Scenario scenario) {
 
 			 if (scenario.isFailed()) {
@@ -65,7 +65,7 @@ public class hooks {
 				 byte[] src = ts.getScreenshotAs(OutputType.BYTES);
 				 scenario.attach(src, "image/png", "screenshot"); // ... and embed it in the report.
 			 }
-//			 driver.quit();
+			 driver.quit();
         }
 //	 public void embedScreenshot(Scenario scenario) {
 //	        if(scenario.isFailed()) {

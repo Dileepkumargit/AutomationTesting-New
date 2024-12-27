@@ -23,14 +23,19 @@ public class resultsPage{
         this.driver = driver;
     }
 
-	public List<String> busses(){
-		List<WebElement> AllBusses = driver.findElements(By.xpath("//div[@class='container card service  md ']//div[@class='operator-info col s12 m5 l5']/h5"));
-		random(AllBusses);
-		System.out.println(AllBusses.stream().map(WebElement:: getText));
-		driver.findElement(By.xpath("//div[@id='sorting-action']//a//span[contains(text(),'Seats')]")).click();
-		return AllBusses.stream()
-				.map(WebElement :: getText)
-				.collect(Collectors.toList());
+	public resultsPage busses() throws InterruptedException {
+		List<WebElement> AllBusses = driver.findElements(By.xpath("//div[@class='container  ']//div[@class='operator-info col s12 m6 l6']/h5"));
+		int TotalBus = random.nextInt(AllBusses.size());
+		String selectedBus = AllBusses.get(TotalBus).getText();
+		System.out.println("Selected ::" +selectedBus);
+		Thread.sleep(2000);
+		AllBusses.get(TotalBus).click();
+		List<WebElement> SeatsBtn = driver.findElements(By.xpath("//div/h5[@class='title']//ancestor::div[@class='container  ']//div[contains(@id,'service-operator-select-seat')]"));
+
+		random(SeatsBtn);
+//		driver.findElement(By.xpath(selectedBus)).click();
+
+		return this;
 
 	}
 	public resultsPage selectBus() throws InterruptedException {
@@ -38,9 +43,9 @@ public class resultsPage{
 
 		WebElement BusName = driver.findElement(By.xpath("//div[@class='container card service  md '][1]"));
 //		System.out.println("BusOperator :: "+BusName.getText());
-		List<WebElement> Showseats = driver.findElements(By.xpath("//div[@class='container card service  md ']//div//button"));
-		Thread.sleep(5000);
-		random(Showseats);
+//		List<WebElement> Showseats = driver.findElements(By.xpath("//div[@class='container card service  md ']//div//button"));
+//		Thread.sleep(5000);
+//		random(Showseats);
 		return this;
 
 	}

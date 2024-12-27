@@ -2,6 +2,7 @@ package POM;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -41,10 +42,14 @@ public class homePage{
 //			WebElement flightTooltip_Msg = driver.findElement(By.xpath("//h1[contains(text(),'Flight Booking')]"));
 		try{
 		if(driver.findElement(By.xpath("//h1[contains(text(),'Book Bus Tickets')]")).isEnabled()) {
+
 				Thread.sleep(2000);
-				driver.findElement(By.xpath("//div[@class='container text-input  ']//div[@class=' col']/input[contains(@placeholder,'Onward Journey Date')]"))
-						.click();
-				driver.findElement(By.xpath("//div[@class='container calendar  ']//span[@data-date='13']")).click();
+			driver.findElement(By.xpath("//div[@class='container text-input  ']//div[@class=' col']/input[contains(@placeholder,'Onward Journey Date')]")).click();
+				WebElement datePicker = driver.findElement(By.xpath("//div[@class='container text-input  ']//div[@class=' col']/input[contains(@placeholder,'Onward Journey Date')]"));
+				String todayDate =datePicker.getAttribute("value");
+				String date= todayDate.substring(0,2);
+
+				driver.findElement(By.xpath("//div[@class='container calendar  ']//span[@data-date='"+date+"']")).click();
 		}}catch (NoSuchElementException e){
 		if (driver.findElement(By.xpath("//h1[contains(text(),'Flight Booking')]")).isDisplayed()){
 
@@ -67,19 +72,28 @@ public class homePage{
 	public homePage ClickOnOperator(operator value) throws InterruptedException {
 			Thread.sleep(3000);
 		System.out.println("checking in "+value +" Operator");
-		driver.findElement(By.xpath("//div[@id='top-navigation']//a[@id='"+value+"-link']")).click();
+			driver.findElement(By.xpath("//div[@id='top-navigation']//a[@id='" + value + "-link']")).click();
+
 		return this;
 		
 	}
 
 	public homePage fromTrainStation() throws InterruptedException {
-		
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//div[@class='source']//div")).click();
-		driver.findElement(By.xpath("//div[@class='search-input']//input[1]")).sendKeys("Bangalore");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//ul//li[@id='source-item-0']")).click();
-		
+		try{
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//div[@class='source']//div")).click();
+			driver.findElement(By.xpath("//div[@class='search-input']//input[1]")).sendKeys("Bangalore");
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//ul//li[@id='source-item-0']")).click();
+		}
+		catch(NoSuchElementException e){
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//div[@class='flex justify-between items-center relative w-full h-full  block']")).click();
+			driver.findElement(By.xpath("//label[contains(text(),'From')]//parent::div[@class='flex flex-grow items-center']//input")).sendKeys("Bangalore");
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//div[@class='overflow-y-scroll absolute top-[61px] bg-white w-[375px] min-h-[150px] max-h-[450px] shadow-500 z-20 rounded-20 !animate-none no-scrollbar block Autocompleter_animate__zqRDe']//child::div//following-sibling::div//li")).click();
+
+		}
 		return this;
 	}
 
@@ -128,9 +142,20 @@ public class homePage{
 			return  this;
 	}
 
-	public homePage enterToLocation(){
-		String fromLocation = "BLR";
-			return this;
+	public homePage enterToLocation() throws InterruptedException {
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		if(driver.getTitle().contains("Flight Booking, Cheap Flights, Air Tickets at Lowest Fare | ixigo")){
+			String ToLocation = "BLR";
+
+			driver.findElement(By.xpath("//span[contains(text(),'From')]//ancestor::div[@class='relative flex gap-0.5 flex-1']/div[2]")).click();
+
+			driver.findElement(By.xpath("//label[contains(text(),'From')]/ancestor::div/input")).sendKeys(ToLocation);
+			driver.findElement(By.xpath("//div[@class='overflow-y-scroll absolute top-[61px] bg-white w-[375px] min-h-[150px] max-h-[450px] shadow-500 z-20 rounded-20 !animate-none no-scrollbar block Autocompleter_animate__zqRDe']//li//span[contains(text(),'"+ToLocation+"')]")).click();
+			driver.findElement(By.xpath("//div[@class='flex gap-0.5 cursor-pointer h-[60px]']/button")).sendKeys("Delhi");
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//div[@class='overflow-y-scroll absolute top-[61px] bg-white w-[375px] min-h-[150px] max-h-[450px] shadow-500 z-20 rounded-20 !animate-none no-scrollbar block Autocompleter_animate__zqRDe']//li//span[contains(text(),'DEL')]")).click();
+		}
+		return  this;
 	}
 
 	public homePage ChooseOriginStation(){
@@ -150,6 +175,12 @@ public class homePage{
 			String selectedPickup = TrainsList.get(TotalTrains).getText();
 			System.out.println("Selected Train::" +selectedPickup);
 
+			//Select seat category
+			List< WebElement> seatCategory = driver.findElements(By.xpath("//div[@class='name']//ancestor::div/div[@class='train']//div[@class='avail-block']"));
+			int TotalSeatCategories = random.nextInt(seatCategory.size());
+			String SelectedSeatCategory = seatCategory.get(TotalSeatCategories).getText();
+			System.out.println("Selected Seat Category ::  "+ SelectedSeatCategory);
+			random(seatCategory);
 			return this;
 	}
 	public void random(List<WebElement> links) {
