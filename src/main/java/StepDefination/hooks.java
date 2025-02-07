@@ -51,7 +51,7 @@ public class hooks {
 		driver.manage().window().maximize();
 		
 		driver.get("https://www.abhibus.com/");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 				
 	}
 //	 @After
