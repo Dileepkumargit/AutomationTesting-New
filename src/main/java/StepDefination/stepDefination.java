@@ -3,7 +3,6 @@ import POM.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
-import static POM.operator.Bus;
 import static POM.operator.Flight;
 import static StepDefination.hooks.driver;
 
@@ -20,20 +19,24 @@ public class stepDefination{
 		
 		System.out.println("Passed the test");
 	}
+	@And("User enter {string} and {string}")
+	public void user_enter_and(String fromCity, String ToCity) throws InterruptedException {
+		Thread.sleep(2000);
+		System.out.println(fromCity + ToCity);
+		home.fromStation(fromCity);
+		home.ToStation(ToCity);
+
+	}
+	@And("User enter <fromCity> and <ToCity>")
+	public void user_enter_from_city_and_to_city(String string, String string2){
+		System.out.println(string +string2);
+	}
 
 	@And("user login the abhibus website with {string} and {string} credentials")
 	public void user_login_the_abhibus_website_with_and_credentials(String Bangalore, String chennai) throws InterruptedException {
 	   
 		LoginPage.clickOnSignLinks();
 		LoginPage.enterUsername();
-	}
-
-	@And("user enter the from city and to city")
-	public void user_enter_the_from_city_and_to_city() throws InterruptedException {
-		 Thread.sleep(3000); 
-			home.enterFromCity()
-					.enterToCity();
-		 
 	}
 
 	@And("user enter the date of journey")
@@ -70,13 +73,12 @@ public class stepDefination{
 	   
 	}
 
-	@And("user enter the <from station> and <to station>")
-	public void user_enter_the_from_station_and_to_station() throws InterruptedException {
-	    Thread.sleep(2000);
-		home.fromTrainStation();
-	    home.ToTrainStation();
-
-	}
+//	@And("user enter the <from station> and <to station>")
+//	public void user_enter_the_from_station_and_to_station() throws InterruptedException {
+//	    Thread.sleep(2000);
+//		home.fromStation();
+//	    home.ToStation();
+//	}
 	
 
 	@And("user select the date")

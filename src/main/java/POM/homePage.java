@@ -2,7 +2,6 @@ package POM;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -48,13 +47,13 @@ public class homePage{
 				WebElement datePicker = driver.findElement(By.xpath("//div[@class='container text-input  ']//div[@class=' col']/input[contains(@placeholder,'Onward Journey Date')]"));
 				String todayDate =datePicker.getAttribute("value");
 				String date= todayDate.substring(0,2);
-
-				driver.findElement(By.xpath("//div[@class='container calendar  ']//span[@data-date='"+date+"']")).click();
+				System.out.println(date);
+				driver.findElement(By.xpath("//div[@class='container calendar  ']//span[@data-date='19']")).click();
 		}}catch (NoSuchElementException e){
 		if (driver.findElement(By.xpath("//h1[contains(text(),'Flight Booking')]")).isDisplayed()){
 
 			driver.findElement(By.xpath("//p[contains(text(),'Departure')]//ancestor::div[@class='bg-charcoal-40 hover:bg-neutral-subtle-over w-full']")).click();
-			driver.findElement(By.xpath("//button[@class='react-calendar__tile react-calendar__month-view__days__day']//abbr[@aria-label='August 30, 2024']")).click();
+			driver.findElement(By.xpath("//button[@class='react-calendar__tile react-calendar__month-view__days__day']//abbr[@aria-label='February 21, 2025']")).click();
 		}}
 
 		return this;
@@ -71,38 +70,61 @@ public class homePage{
 
 	public homePage ClickOnOperator(operator value) throws InterruptedException {
 			Thread.sleep(3000);
-		System.out.println("checking in "+value +" Operator");
+			System.out.println("checking in "+value +" Operator");
 			driver.findElement(By.xpath("//div[@id='top-navigation']//a[@id='" + value + "-link']")).click();
-
-		return this;
-		
-	}
-
-	public homePage fromTrainStation() throws InterruptedException {
-		try{
-			Thread.sleep(3000);
-			driver.findElement(By.xpath("//div[@class='source']//div")).click();
-			driver.findElement(By.xpath("//div[@class='search-input']//input[1]")).sendKeys("Bangalore");
-			Thread.sleep(3000);
-			driver.findElement(By.xpath("//ul//li[@id='source-item-0']")).click();
-		}
-		catch(NoSuchElementException e){
-			Thread.sleep(3000);
-			driver.findElement(By.xpath("//div[@class='flex justify-between items-center relative w-full h-full  block']")).click();
-			driver.findElement(By.xpath("//label[contains(text(),'From')]//parent::div[@class='flex flex-grow items-center']//input")).sendKeys("Bangalore");
-			Thread.sleep(2000);
-			driver.findElement(By.xpath("//div[@class='overflow-y-scroll absolute top-[61px] bg-white w-[375px] min-h-[150px] max-h-[450px] shadow-500 z-20 rounded-20 !animate-none no-scrollbar block Autocompleter_animate__zqRDe']//child::div//following-sibling::div//li")).click();
-
-		}
 		return this;
 	}
 
-	public homePage ToTrainStation() throws InterruptedException {
+	public homePage fromStation(String fromCity) throws InterruptedException {
+//			WebElement BusBooking = driver.findElement(By.xpath("//h1[contains(text(),'Book Bus Tickets')]"));
+			try{
+				driver.findElement(By.xpath("//input[@placeholder= 'From Station' ]//ancestor::div[@class='container form-control  ']")).click();
+				driver.findElement(By.xpath("//input[@placeholder='From Station']")).sendKeys(fromCity);
+				Thread.sleep(2000);
+				driver.findElement((By.xpath("//input[@placeholder='From Station']//ancestor::div[@id='search-from']//ul/li[contains(@data-id,'Bangalore')]"))).click();
+			}
+
+			catch(NoSuchElementException f){
+
+				Thread.sleep(3000);
+				try {
+					driver.findElement(By.xpath("//div[@class='source']//div")).click();
+					driver.findElement(By.xpath("//div[@class='search-input']//input[1]")).sendKeys(fromCity);
+					Thread.sleep(3000);
+					driver.findElement(By.xpath("//ul//li[@id='source-item-0']")).click();
+				}
+				catch(NoSuchElementException e){
+					driver.findElement(By.xpath("//div[@class='flex justify-between items-center relative w-full h-full  block']")).click();
+					driver.findElement(By.xpath("//label[contains(text(),'From')]//parent::div[@class='flex flex-grow items-center']//input")).sendKeys(fromCity);
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("(//div[contains(@class,'overflow-y-scroll absolute')]//div[@role='listitem'])[1]")).click();
+				}
+			}
+			return this;
+	}
+
+	public homePage ToStation(String ToCity) throws InterruptedException {
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//div[@class='destination']//div")).click();
-		driver.findElement(By.xpath("//div[@class='destination']//input[1]")).sendKeys("Chennai");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//ul//li[@id='destination-item-1']")).click();
+		try{
+			driver.findElement(By.xpath("//input[@placeholder='To Station']")).sendKeys(ToCity);
+			Thread.sleep(2000);
+			driver.findElement(By.xpath("//input[@placeholder='To Station']//ancestor::div//ul//li[contains(@data-id,'Chennai')]")).click();
+		}
+		catch(NoSuchElementException e) {
+			try {
+				Thread.sleep(3000);
+				driver.findElement(By.xpath("//div[@class='destination']//div")).click();
+				driver.findElement(By.xpath("//div[@class='destination']//input[1]")).sendKeys(ToCity);
+				Thread.sleep(3000);
+				driver.findElement(By.xpath("//ul//li[@id='destination-item-1']")).click();
+			}
+			catch(NoSuchElementException f) {
+				driver.findElement(By.xpath("//div[@class='bg-charcoal-40 flex items-center relative w-full h-[60px] hover:bg-neutral-subtle-over border-b-4 border-blue-500 ']")).click();
+				driver.findElement(By.xpath("//label[contains(text(),'To')]//parent::div[@class='flex flex-grow items-center']//input")).sendKeys(ToCity);
+				Thread.sleep(1500);
+				driver.findElement(By.xpath("(//div[@class='bg-charcoal-40 flex items-center relative w-full h-[60px] hover:bg-neutral-subtle-over border-b-4 border-blue-500 ']//div[contains(@class,'overflow-y-scroll absolute')]//div[@role='listitem'])[1]")).click();
+			}
+		}
 		return this;
 	}
 
@@ -117,7 +139,12 @@ public class homePage{
 	}
 
 	public homePage clickOnSearch() {
-		driver.findElement(By.xpath("//div[@class='search-form']//button")).click();
+			try {
+			driver.findElement(By.xpath("//div[@class='search-form']//button")).click();
+		}catch ( NoSuchElementException e){
+				driver.findElement(By.xpath("//button[contains(text(),'Search')]")).click();
+			}
+
 		return this;
 	}
 
